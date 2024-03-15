@@ -3,10 +3,10 @@ name = "serialize_with_bson"
 version = "0.1.0"
 edition = "2021"
 authors = ["wandercn<wander@ffactory.org>"]
-description = "Alibaba Cloud SDK for Rust"
+description = "serialize with for bson DateTime"
 homepage = "https://github.com/wandercn/serialize_with_bson"
 repository = "https://github.com/wandercn/serialize_with_bson"
-keywords = ["serialize-with","bson","bson-help","time-formart"]
+keywords = ["serialize","bson","help","timeformart"]
 categories= ["api-bindings","accessibility","development-tools","compilers"]
 
 
