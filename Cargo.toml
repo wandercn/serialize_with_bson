@@ -6,10 +6,9 @@ authors = ["wandercn<wander@ffactory.org>"]
 description = "Alibaba Cloud SDK for Rust"
 homepage = "https://github.com/wandercn/serialize_with_bson"
 repository = "https://github.com/wandercn/serialize_with_bson"
-keywords = ["serialize_with","bson","bson_help","time_formart"]
+keywords = ["serialize-with","bson","bson-help","time-formart"]
 categories= ["api-bindings","accessibility","development-tools","compilers"]
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 bson = { version = "2.9.0" }  
