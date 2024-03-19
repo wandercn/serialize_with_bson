@@ -1,8 +1,8 @@
 [package]
 name = "serialize_with_bson"
 license = "MIT"
-version = "0.1.1"
-edition = "2021"
+version = "0.1.2"
+edition = "2018"
 authors = ["wandercn<wander@ffactory.org>"]
 description = "serialize with for bson DateTime"
 homepage = "https://github.com/wandercn/serialize_with_bson"
