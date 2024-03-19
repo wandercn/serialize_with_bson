@@ -33,18 +33,18 @@ use std::{collections::HashMap, str::FromStr};
 
     
 fn main() {
-        let mut map = HashMap::new();
+        let mut map: HashMap<String, BsonDateTime> = HashMap::new();
         map.insert(
             "R3R-A-9-2-L5".to_string(),
             DateTime::from_millis(1571985978429).into(),
         );
         map.insert(
             "R3T-A-5-3-K6".to_string(),
-            DateTime::from_millis(1571984742668).into(),
+            BsonDateTime::from(DateTime::from_millis(1571984742668)),
         );
         map.insert(
             "R3R-A-10-3-L7".to_string(),
-            DateTime::from_millis(1571985444876).into(),
+            BsonDateTime::from_millis(1571985444876),
         );
 
         let src = Bacterium {
@@ -72,5 +72,30 @@ fn main() {
             println!("{}", result);
         }
     }
+
+    output:
+   {
+	"_id": "5db131829181e500010b93d6",
+	"has_genome": false,
+	"creation_time": "2019-10-24 14:07:14.109 +0900 JST",
+	"modified_time": "2023-07-27 15:26:26.944 +0900 JST",
+	"short_id": "B1DXX",
+	"locations": {
+		"R3T-A-5-3-K6": "2019-10-25 15:25:42.668 +0900 JST",
+		"R3R-A-9-2-L5": "2019-10-25 15:46:18.429 +0900 JST",
+		"R3R-A-10-3-L7": "2019-10-25 15:37:24.876 +0900 JST"
+	},
+	"taxonomy": {
+		"class": "Bacilli",
+		"phylum": "Bacillota",
+		"kingdom": "Bacteria",
+		"cnSpecies": "粪肠球菌",
+		"species": "Enterococcus faecalis",
+		"genus": "Enterococcus",
+		"family": "Enterococcaceae",
+		"order": "Lactobacillales"
+	},
+	"backtrace": ["H2T73", "H2RNV"]
+}
 
 ```
