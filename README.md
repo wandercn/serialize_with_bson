@@ -5,7 +5,7 @@ bson DateTime 转json 帮助函数，转换指定时区和格式的时间格式
 
 ```
 use serialize_with_bson::{
-    datetime_to_tz, datetime_to_tz_map, layout::DEFAULT, object_to_hex, time_zone_and_layout,
+    datetime_to_tz, datetime_to_tz_map, layout::DEFAULT, object_id_to_hex, time_zone_and_layout,
     TimeZoner,
 };
 use bson::{doc, oid::ObjectId, DateTime, Document};
@@ -17,7 +17,7 @@ use std::{collections::HashMap, str::FromStr};
 
     #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
     pub struct Bacterium {
-        #[serde(rename = "_id", serialize_with = "object_to_hex")] // 启用自定义序列化函数 object_to_hex 把ObjectID转成hex字符串
+        #[serde(rename = "_id", serialize_with = "object_id_to_hex")] // 启用自定义序列化函数 object_id_to_hex 把ObjectID转成hex字符串
         pub id: ObjectId,
         pub has_genome: bool,
         #[serde(serialize_with = "datetime_to_tz")] // 启用自定义序列化函数datetime_to_tz 把BsonDateTime转到指定时区时间

@@ -6,7 +6,7 @@
 //!
 //! ```rust
 //! use serialize_with_bson::{
-//!     datetime_to_tz, datetime_to_tz_map, layout::DEFAULT, object_to_hex, time_zone_and_layout,
+//!     datetime_to_tz, datetime_to_tz_map, layout::DEFAULT, object_id_to_hex, time_zone_and_layout,
 //!     TimeZoner,
 //! };
 //! use bson::{doc, oid::ObjectId, DateTime, Document};
@@ -18,7 +18,7 @@
 //!
 //!     #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 //!     pub struct Bacterium {
-//!         #[serde(rename = "_id", serialize_with = "object_to_hex")] // 启用自定义序列化函数 object_to_hex 把ObjectID转成hex字符串
+//!         #[serde(rename = "_id", serialize_with = "object_id_to_hex")] // 启用自定义序列化函数 object_id_to_hex 把ObjectID转成hex字符串
 //!         pub id: ObjectId,
 //!         pub has_genome: bool,
 //!         #[serde(serialize_with = "datetime_to_tz")] // 启用自定义序列化函数datetime_to_tz 把BsonDateTime转到指定时区时间
@@ -136,7 +136,7 @@ fn convert_time_zone(timestamp: i64, tz_name: &str, layout: &str) -> String {
     t.Format(layout)
 }
 /// ObjectId 转 hex 字符串
-pub fn object_to_hex<S>(value: &ObjectId, serializer: S) -> Result<S::Ok, S::Error>
+pub fn object_id_to_hex<S>(value: &ObjectId, serializer: S) -> Result<S::Ok, S::Error>
 where
     S: Serializer,
 {
@@ -215,7 +215,7 @@ macro_rules! time_zone_and_layout {
 #[cfg(test)]
 mod tests {
 
-    use crate::{datetime_to_tz, datetime_to_tz_map, layout::DEFAULT, object_to_hex, TimeZoner};
+    use crate::{datetime_to_tz, datetime_to_tz_map, layout::DEFAULT, object_id_to_hex, TimeZoner};
     use bson::{doc, oid::ObjectId, DateTime, Document};
     use serde::{Deserialize, Serialize};
     use serde_json::to_string;
@@ -224,7 +224,7 @@ mod tests {
     time_zone_and_layout!("Asia/Tokyo", DEFAULT, BsonDateTime);
     #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
     pub struct Bacterium {
-        #[serde(rename = "_id", serialize_with = "object_to_hex")]
+        #[serde(rename = "_id", serialize_with = "object_id_to_hex")]
         pub id: ObjectId,
         pub has_genome: bool,
         #[serde(serialize_with = "datetime_to_tz")]
